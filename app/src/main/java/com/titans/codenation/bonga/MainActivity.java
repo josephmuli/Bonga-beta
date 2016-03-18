@@ -13,6 +13,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 import com.firebase.client.Firebase;
 
 import java.util.Random;
@@ -36,16 +37,14 @@ public class MainActivity extends AppCompatActivity {
 
         //adding eventlistener for when one presses enter button after typing message
 
-        EditText inputText = (EditText) findViewById(R.id.textView);
-        inputText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        EditText inputText = (EditText) findViewById(R.id.editText);
+        inputText.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
                 //check whether there is a send ID
                 if(actionId == EditorInfo.IME_ACTION_SEND){
                     sendMessage();
                 }
-
                 return true;
             }
         });
@@ -61,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendMessage(){
-        //get a reference to thr text field itself so as to get the message
-        EditText textInput = (EditText) findViewById(R.id.textView);
+        //get a reference to the text field itself so as to get the message
+        EditText textInput = (EditText) findViewById(R.id.editText);
 
         String message = textInput.getText().toString();
 
