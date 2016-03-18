@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String FIREBASE_URL = "https://bongachat.firebaseio.com/";
@@ -47,12 +49,33 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+            //get a reference to the send button
+        findViewById(R.id.sendButton).setOnClickListener(new View.OnClickListener(){
 
+            @Override
+            public void onClick(View v) {
+                sendMessage();
+            }
+        });
 
+    }
 
+    public void sendMessage(){
+        //get a reference to thr text field itself so as to get the message
+        EditText textInput = (EditText) findViewById(R.id.textView);
 
+        String message = textInput.getText().toString();
 
+        //check whether message has content
+        if(!message.equals("")){
+            Random rand = new Random();
+            String author = "Joseph" + rand.nextInt(100);
+            ChatMessage cMessage = new ChatMessage(author, message);
 
+            firebaseRef.push().setValue(cMessage);
+            textInput.setText("");
+
+        }
     }
 
     @Override
