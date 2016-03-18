@@ -5,9 +5,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 
@@ -27,6 +31,24 @@ public class MainActivity extends AppCompatActivity {
 
         //COnecting to server
         firebaseRef = new Firebase(FIREBASE_URL);
+
+        //adding eventlistener for when one presses enter button after typing message
+
+        EditText inputText = (EditText) findViewById(R.id.textView);
+        inputText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                //check whether there is a send ID
+                if(actionId == EditorInfo.IME_ACTION_SEND){
+                    sendMessage();
+                }
+
+                return true;
+            }
+        });
+
+
 
 
 
