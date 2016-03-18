@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String FIREBASE_URL = "https://bongachat.firebaseio.com/";
 
+    private Firebase firebaseRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Firebase.setAndroidContext(this);
+
+
+        //COnecting to server
+        firebaseRef = new Firebase(FIREBASE_URL);
+
+
 
 
     }
